@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ hero_name }}</title>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet">
+  <button onclick="document.getElementById('myMusic').play()">▶ Putar Musik</button>
+  <style>
+    body {
+      font-family: 'Quicksand', sans-serif;
+      background-color: #0c1a2c;
+      color: white;
+      padding: 40px;
+    }
+
+    .hero-header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .hero-header h1 {
+      font-size: 2.5em;
+      color: #ffd700;
+    }
+
+    .hero-content {
+      max-width: 800px;
+      margin: 0 auto;
+      background-color: #1e2a3d;
+      padding: 30px;
+      border-radius: 16px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    }
+
+    .hero-content {
+  position: relative;
+  overflow: hidden; /* biar gambar gak keluar kotak */
+  background: #1e293b; /* contoh warna kotak */
+  border-radius: 12px;
+  padding: 20px;
+  color: white;
+  max-width: 700px;
+  margin: auto;
+}
+
+.hero-content img {
+  mix-blend-mode: lighten;
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  width: 120px;   /* sesuaikan ukuran */
+  height: auto;
+  border-radius: 12px;
+  opacity: 0.85;  /* agak transparan, minimalis */
+}
+
+.hero-content img:hover {
+  opacity: 1;           /* pas hover jadi jelas */
+}
+
+
+    .hero-content p {
+      font-size: 1.1em;
+      line-height: 1.6;
+    }
+
+    a.back-link {
+      display: inline-block;
+      margin-top: 30px;
+      color: #00d1ff;
+      text-decoration: none;
+    }
+    a.back-link:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="hero-header">
+    <h1>{{ hero_title }}</h1>
+  </div>
+
+  <div class="hero-content">
+    <div class="description">
+      {{ hero_description|safe}}
+    <img src="{{ url_for('static', filename=hero_image) }}" alt="{{ hero_name }}">
+  
+  </div>
+    <a href="/" class="back-link">&larr; Kembali ke Beranda</a>
+  </div>
+  
+</body>
+<audio id="myMusic" autoplay loop>
+  <source src="{{ url_for('static', filename=hero_music) }}" type="audio/mp3">
+  Browser kamu tidak mendukung audio.
+</audio>
+</html>

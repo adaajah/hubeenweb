@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<button onclick="document.getElementById('myMusic').play()">▶ Putar Musik</button>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Hubin</title>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Quicksand', sans-serif;
+      background: #0c1a2c;
+      color: #fff;
+    }
+
+    header {
+      text-align: center;
+      padding: 50px 20px;
+    }
+
+
+    .float-img {
+      width: 200px;
+      border-radius: 50%;
+      animation: float 3s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-15px); }
+      100% { transform: translateY(0); }
+    }
+
+    .hero-title {
+      font-size: 2em;
+      margin-top: 20px;
+    }
+
+    .card-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+  padding: 20px;
+  justify-content: center;
+}
+
+.card {
+  flex: 0 0 auto;
+  max-width: 220px;
+  background: #1e2a3d;
+  border-radius: 16px;
+  padding: 20px;
+  text-align: center;
+  scroll-snap-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+
+  /* efek transisi halus */
+  transition: transform 2.0s ease, filter 2.0s ease, box-shadow 2.0s ease;
+}
+
+.card:hover {
+  transform: scale(1.12);              /* zoom kotaknya */
+  filter: brightness(1.1);             /* lebih hidup */
+  box-shadow: 0 12px 24px rgba(0,200,255,0.3); /* glow */
+}
+
+.card img {
+  width: auto;
+  height: 100px;
+  border-radius: 12px;
+  overflow: hidden;
+  mix-blend-mode: lighten;
+  opacity: 1;
+}
+
+
+
+    .kisah {
+      padding: 40px 20px;
+      background: #162030;
+    }
+
+    .kisah h2 {
+      text-align: center;
+      font-size: 2em;
+      margin-bottom: 20px;
+    }
+
+    .kisah-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
+    .kisah-item {
+  background: #1e2a3d;
+  border-radius: 12px;
+  padding: 20px;
+  overflow: hidden; /* biar gambar gak keluar dari border */
+}
+
+.kisah-item img {
+  width: 100%;
+  border-radius: 12px;
+  transition: transform 5.0s ease, filter 5.0s ease, box-shadow 0.8s ease;
+}
+
+.kisah-item img:hover {
+  transform: scale(1.12); /* zoom dikit */
+  filter: brightness(1.1); /* opsional, biar lebih hidup */
+  box-shadow: 0 12px 24px rgba(0, 200, 255, 0.3);
+}
+
+    .thanksgiving {
+      text-align: center;
+      margin-top: 40px;
+      font-style: italic;
+      font-size: 1.2em;
+      color: #ffd700;
+    }
+
+
+  </style>
+</head>
+<body>
+  <header>
+    <img src="{{ url_for('static', filename='pp.jpg') }}" alt="Lentera" class="float-img" />
+    <h1 class="hero-title" data-aos="fade-up">Selamat Datang Mentemen Hubinku</h1>
+    <p data-aos="fade-up" data-aos-delay="200">Persembahan kecil dariku, semoga kalian suka yaa.</p>
+  </header>   
+  <section class="card-container" data-aos="fade-up">
+    <div class="card" onclick="goToHero('Nara')">
+      <img src="{{ url_for('static', filename='nara.jpg') }}" alt="Hero 1">
+      <h3>Teh Nara</h3>
+    </div>
+    <div class="card" onclick="goToHero('Iza')">
+      <img src="{{ url_for('static', filename='iza.jpg') }}" alt="Hero 2">
+      <h3>Teh Iza</h3>
+    </div>
+    <div class="card" onclick="goToHero('Qilan')">
+      <img src="{{ url_for('static', filename='qilan.jpg') }}" alt="Hero 3">
+      <h3>Qilan</h3>
+    </div>
+    <div class="card" onclick="goToHero('Nur')">
+      <img src="{{ url_for('static', filename='nur.jpg') }}" alt="Hero 4">
+      <h3>Nur</h3>
+    </div>
+    <div class="card" onclick="goToHero('Jiyad')">
+      <img src="{{ url_for('static', filename='jiyad.jpg') }}" alt="Hero 5">
+      <h3>Jiyad</h3>
+    </div>
+    <div class="card" onclick="goToHero('Devara')">
+      <img src="{{ url_for('static', filename='devara.jpg') }}" alt="Hero 6">
+      <h3>Devara</h3>
+    </div>
+    <div class="card" onclick="goToHero('Dimas')">
+      <img src="{{ url_for('static', filename='dimas.jpg') }}" alt="Hero 7">
+      <h3>Dimas</h3>
+    </div>
+    <div class="card" onclick="goToHero('Bagus')">
+      <img src="{{ url_for('static', filename='bagus1.jpg') }}" alt="Hero 8">
+      <h3>Bagus</h3>
+    </div>
+    <div class="card" onclick="goToHero('Muti')">
+      <img src="{{ url_for('static', filename='muti.jpg') }}" alt="Hero 9">
+      <h3>Muti</h3>
+    </div>
+    <div class="card" onclick="goToHero('Hada')">
+      <img src="{{ url_for('static', filename='hada1.jpg') }}" alt="Hero 10">
+      <h3>Hada</h3>
+    </div>
+    <div class="card" onclick="goToHero('Mufid')">
+      <img src="{{ url_for('static', filename='mufid.jpg') }}" alt="Hero 11">
+      <h3>Mufid</h3>
+    </div>
+  </section>
+
+  <section class="kisah" data-aos="fade-up">
+    <h2>Ini Kisah Kita</h2>
+    <div class="kisah-list">
+      <div class="kisah-item">
+        <img src="{{ url_for('static', filename='perdana.jpg') }}" alt="Hero 2">
+        <h3>First Meet With Us</h3>
+        <p>Sekumpulan pemuda pemudi yang memilih jalan dakwah di kampus, walau banyak rintangan, mereka tetap melangkah membawa cahaya kebaikan.</p>
+      </div>
+      <div class="kisah-item">
+        <img src="{{ url_for('static', filename='onlen.jpg') }}" alt="Hero 2">
+        <h3>Kumpul Onlen</h3>
+        <p>walaupun kegiatan kuliah penuh, mereka tetap bersemangat, ga percaya? liat rapat onlen pun mereka gaskeun tapi ga tembus jamal ya adik-adik.</p>
+      </div>
+      <div class="kisah-item">
+        <img src="{{ url_for('static', filename='bonding.jpg') }}" alt="Hero 2">
+        <h3>Bonding</h3>
+        <p>Belajar? Kerjain proker? ya emang wajib tapi bonding juga perlu.</p>
+      </div>
+      <div class="kisah-item">
+        <img src="{{ url_for('static', filename='binboy.jpg') }}" alt="Hero 2">
+        <h3>Mabit Binboyss</h3>
+        <p>kumpulan anak sholeh yang ingin mengejar masa depan cerahnya, selalu mendekatkan diri pada Yang Maha ESA.</p>
+      </div>
+      <div class="kisah-item">
+        <img src="{{ url_for('static', filename='jalanitb.jpg') }}" alt="Hero 2">
+        <h3>Hubin Goes to ITB</h3>
+        <p>jalan-jalan liat kreativitas sohib tetangga alias ITB, gabakal seru kalo ga sama hubinn.</p>
+      </div>
+      <div class="kisah-item">
+        <img src="{{ url_for('static', filename='rektorat1.jpg') }}" alt="Hero 2">
+        <h3>1 Kakak 8 Adik</h3>
+        <p>Jarang jarang bisa kumpul full team lagi, karena kesibukan nak hubin yang sangat produktif, btw lucu bgt foto ini pas diedit ala film gini hihi.</p>
+      </div>
+      <div class="kisah-item">
+        <img src="{{ url_for('static', filename='nobagus.jpg') }}" alt="Hero 2">
+        <h3>Foto Without Bagus</h3>
+        <p>foto habis membahas safari dll, tapii no bagus here....</p>
+      </div>
+      <div class="kisah-item">
+        <img src="{{ url_for('static', filename='duta.jpg') }}" alt="Hero 2">
+        <h3>Bagus Only</h3>
+        <p>its your place man, always make us happy.</p>
+      </div>
+      <div class="kisah-item">
+        <img src="{{ url_for('static', filename='safari1.jpg') }}" alt="Hero 2">
+        <h3>Safari Hari Pertama</h3>
+        <p>proker safari mulai pertama kali di an-nahl, seru banget, berbagi cerita, main games, wkwk btw ini acaranya agak ngaret, makasih buat temen hubin yang sudah bantuuu.</p>
+      </div>
+      <div class="kisah-item">
+        <img src="{{ url_for('static', filename='tamu.jpg') }}" alt="Hero 2">
+        <h3>Welcome, Tamu Baruu Tiba</h3>
+        <p>Siapa sangka kita kedatangan tamu baru, OMG Selamat datang MUFIIDD.</p>
+      </div>
+      <div class="kisah-item">
+        <img src="{{ url_for('static', filename='safari2.jpg') }}" alt="Hero 2">
+        <h3>Safari</h3>
+        <p>salah satu proker utama hubin sedang berlangsung, ada 4 LDF disana weww, capek baget. btw ada isu pgn di balsan wkwk</p>
+      </div>
+      <div class="kisah-item">
+        <img src="{{ url_for('static', filename='safari3.jpg') }}" alt="Hero 2">
+        <h3>Safari Lagi</h3>
+        <p>dikarenakan LDF itu ada 16 ya kak, jadi ya banyak juga safarinya, ini last day ya klo gasalah.</p>
+      </div>
+      <div class="kisah-item">
+        <img src="{{ url_for('static', filename='hubin.jpg') }}" alt="Hero 2">
+        <h3>Hubin Join The Trend</h3>
+        <p>sempet viral trend ghibli, hubin ijin join ya.. maaf pak Hayao Mizaki.</p>
+      </div>
+      <div class="kisah-item">
+        <img src="{{ url_for('static', filename='rumah.jpg') }}" alt="Hero 2">
+        <h3>Syukuran Rumah Idaman</h3>
+        <p>rencana dadakan yang pada akhirnya mengumpulkan kita pada satu tempat, wkwk ga disakngka-sangka, sekalian aja syukuran cuyy.</p>
+      </div>
+      <div class="kisah-item">
+        <img src="{{ url_for('static', filename='laststanding.jpg') }}" alt="Hero 2">
+        <h3>Last Standing Hubin on Adha</h3>
+        <p>Lebaran kami belum bisa pulang dikarenakan agenda beberapa hal, jadi ya, semangat #LastStandingNagorians.</p>
+      </div>
+      <div class="kisah-item">
+        <img src="{{ url_for('static', filename='rumputrektorat.jpg') }}" alt="Hero 2">
+        <h3>Hubin dengan Rumputnya</h3>
+        <p>gatau kenapa suka banget sama rumput, ayo foto lagi, ciiss.</p>
+      </div>
+      <div class="kisah-item">
+        <img src="{{ url_for('static', filename='sybau.jpg') }}" alt="Hero 2">
+        <h3>Love u guys</h3>
+        <p>bonding gada aku, sybau..🥀🥀</p>
+          <p>aku lagi rapat ahlan ini weh, tapi support kalian seru bgt, lov u guyss.</p>
+      </div>
+      <div class="kisah-item">
+        <img src="{{ url_for('static', filename='17an.jpg') }}" alt="Hero 2">
+        <h3>Hubin 17an</h3>
+        <p>lagi lagi dadakan wkwkw heran aku juga, ada aja ide seru dadakannya, btw seru benget gamesnya. eh itu si bagus kecekik hahah</p>
+      </div>
+      <div class="kisah-item">
+        <img src="{{ url_for('static', filename='ahlan.jpg') }}" alt="Hero 2">
+        <h3>Hubin on Ahlan</h3>
+        <p>Kontribusi hubin di acara besarnya kaderisasi, penuh tantangan, capek, lelah, semua campur aduk semoga lillah.</p>
+      </div>
+      <div class="kisah-item">
+        <img src="{{ url_for('static', filename='hubinahlan.jpg') }}" alt="Hero 2">
+        <h3>Hubin Penguasa Gacoan</h3>
+        <p>Ngakak banget, ribetin masalah posisi meja kursi, tarik sana tarik sini ujung ujungnya kayak awal lagi, rusuh banget diliat sekampung.</p>
+      </div>
+      <div class="kisah-item">
+        <img src="{{ url_for('static', filename='thanks.jpg') }}" alt="Hero 2">
+        <h3>Support from u all</h3>
+        <p>Support kalian gada habis-habisnya, gatau mau ngomong apa lagi, aih terharu sudah aku ini wak, makasih teh nara, teh iza, dimas, devara, jiyad, qilan, nur, muti, bagus, mufid semangat terus kalian ya. Jadi, lanjut KMMK?</p>
+      </div>
+    </div>
+    <div class="thanksgiving">
+      "Terima kasih untuk semua cerita kecil yang kalian berikan, All of you always colour my life."
+    </div>
+  </section>
+
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init();
+
+    function goToHero(hero) {
+        window.location.href = `/hero/${hero}`;
+      }
+  </script>
+  <audio id="myMusic" autoplay loop>
+  <source src="{{ url_for('static', filename='lagu2.mp3') }}" type="audio/mp3">
+  Browser kamu tidak mendukung audio.
+</audio>
+</body>
+</html>
