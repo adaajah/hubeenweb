@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect, url_for, session
 
 app = Flask(__name__)
 app.secret_key = "rahasia-besar"
@@ -17,7 +17,7 @@ hero_passwords = {
     "Devara": "d3vara*123",
     "Jiyad": "jiy4d*123"
 }
-
+PASSWORD = "hubinku123"
 # Data detail hero
 hero_data = {
     "Nara": {
@@ -209,8 +209,18 @@ Makasih juga teh untuk satu setengah tahunnya, makasih udah nerima aku di stafma
         <p>Hada</p>"""
     }
 }
-
-@app.route("/")
+@app.route("/", methods=["GET", "POST"])
+def login():
+    error = None
+    if request.method == "POST":
+        password = request.form["password"]
+        if password == PASSWORD:
+            return redirect(url_for("index"))
+        else:
+            error = "Password salah!"
+    return render_template("login.html", error=error)
+    
+@app.route("/index")
 def index():
     return render_template("index.html", hero_data=hero_data)
 
