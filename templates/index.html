@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<button onclick="document.getElementById('myMusic').play()">▶ Putar Musik</button>
+<button onclick="toggleMusic()">▶ Putar Musik</button>
 
 <head>
   <meta charset="UTF-8" />
@@ -304,6 +304,16 @@
         window.location.href = `/hero/${hero}`;
       }
   </script>
+  <script>
+  function toggleMusic() {
+    const music = document.getElementById("myMusic");
+    if (music.paused) {
+      music.play();
+    } else {
+      music.pause();
+    }
+  }
+</script>
   <audio id="myMusic" autoplay loop>
   <source src="{{ url_for('static', filename='lagu2.mp3') }}" type="audio/mp3">
   Browser kamu tidak mendukung audio.
