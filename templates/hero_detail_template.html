@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{{ hero_name }}</title>
   <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet">
-  <button onclick="document.getElementById('myMusic').play()">▶ Putar Musik</button>
+  <button onclick="toggleMusic()">▶ Putar Musik</button>
   <style>
     body {
       font-family: 'Quicksand', sans-serif;
@@ -92,6 +92,16 @@
   </div>
   
 </body>
+<script>
+  function toggleMusic() {
+    const music = document.getElementById("myMusic");
+    if (music.paused) {
+      music.play();
+    } else {
+      music.pause();
+    }
+  }
+</script>
 <audio id="myMusic" autoplay loop>
   <source src="{{ url_for('static', filename=hero_music) }}" type="audio/mp3">
   Browser kamu tidak mendukung audio.
